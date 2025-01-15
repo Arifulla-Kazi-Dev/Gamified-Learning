@@ -1,0 +1,75 @@
+.hero-section {
+    position: relative; /* Position relative for absolute positioning of the ::before pseudo-element */
+    text-align: center;
+    padding: 50px;
+    background-image: url('./../Assets/hero-bg.jpg'); /* Adjusted path */
+    background-size: cover;
+    color: white;
+    overflow: hidden; /* Prevent overflow */
+    z-index: 1; /* Ensure it is above the pseudo-element */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute; /* Absolutely position the pseudo-element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./../Assets/animated-bg.jpg'); /* Adjusted path */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    z-index: -1; /* Send it behind the content */
+    opacity: 0.7; /* Adjust opacity as needed */
+    animation: fadeIn 8s ease-in-out infinite; /* Optional: modify duration */
+}
+
+/* Optional: Keyframes for the fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+}
+
+.cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.features-overview {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.features-overview h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.feature-item {
+    width: 20%;
+}
+
+.testimonials-section {
+    background-color: #f9f9f9;
+    padding: 40px;
+    text-align: center;
+}

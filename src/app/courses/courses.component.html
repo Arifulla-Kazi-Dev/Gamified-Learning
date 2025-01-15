@@ -1,0 +1,52 @@
+<div class="courses-page">
+  <!-- Search and Filter Bar -->
+  <div class="search-filter-bar">
+    <input
+      type="text"
+      placeholder="Search Courses..."
+      class="search-input"
+      [(ngModel)]="searchTerm"
+      (input)="searchCourses()"
+    />
+    <select class="filter-dropdown" [(ngModel)]="selectedCategory" (change)="filterCourses()">
+      <option value="">Filter by Category</option>
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+  </div>
+
+  <!-- Featured Courses -->
+  <div class="featured-courses">
+    <h2>Featured Courses</h2>
+    <div class="course-list">
+      <div *ngFor="let course of filteredCourses" class="course-card">
+        <div class="course-image" [ngClass]="course.image"></div>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <div class="course-meta">
+          <span>Duration: {{ course.duration }}</span>
+          <span>Instructor: {{ course.instructor }}</span>
+        </div>
+        <button (click)="viewDetails(course.id)" class="details-button">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Courses -->
+  <div class="course-listings">
+    <h2>All Courses</h2>
+    <div class="course-list">
+      <div *ngFor="let course of filteredCourses" class="course-card">
+        <div class="course-image" [ngClass]="course.image"></div>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <div class="course-meta">
+          <span>Duration: {{ course.duration }}</span>
+          <span>Instructor: {{ course.instructor }}</span>
+        </div>
+        <button (click)="viewDetails(course.id)" class="details-button">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

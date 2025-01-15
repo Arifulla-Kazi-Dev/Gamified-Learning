@@ -1,0 +1,172 @@
+/* Main container */
+.challenge-container {
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+                url('./../Assets/animated-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 40px; /* Increased padding for more space */
+    border-radius: 15px;
+    color: white;
+    max-width: 1200px; /* Increased max width */
+    margin: 20px auto; /* Centered with margin */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
+    width: 90%; /* Use more of the viewport width */
+  }
+  
+  /* Animated background */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Section headers */
+  h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px; /* Increased margin for better spacing */
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+    margin-top: 20px; /* Increased margin for better spacing */
+    margin-bottom: 15px; /* Increased margin for better spacing */
+  }
+  
+  h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px; /* Increased margin for better spacing */
+  }
+  
+  /* Challenge selection buttons */
+  .challenge-selection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow wrapping for better spacing */
+    margin-bottom: 30px; /* Increased margin for better spacing */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 25px; /* Increased padding for better touch targets */
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5);
+    margin: 10px; /* Add margin to buttons */
+    flex: 1 1 30%; /* Allow buttons to grow and shrink */
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.7);
+  }
+  
+  /* Challenge details container */
+  .challenge-details {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px; /* Increased padding for more space */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    animation: slideIn 1.5s ease;
+  }
+  
+  /* Theoretical question styling */
+  .theoretical-question {
+    margin: 30px 0; /* Increased margin for better spacing */
+  }
+  
+  label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  textarea {
+    width: 100%;
+    border-radius: 8px;
+    padding: 15px; /* Increased padding for comfort */
+    border: 2px solid #007bff;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  
+  textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Code editor area */
+  .code-editor {
+    margin-top: 30px; /* Increased margin for better spacing */
+  }
+  
+  textarea#userCode {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Run button */
+  button {
+    display: block;
+    margin: 30px auto; /* Increased margin for better spacing */
+  }
+  
+  button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+  
+  /* Display the result message */
+  h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+  
+  .error {
+    color: #ff4d4d;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .challenge-selection {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    button {
+      margin-bottom: 10px;
+      width: 80%; /* Ensure buttons fit well on smaller screens */
+    }
+  
+    textarea {
+      font-size: 0.9rem;
+    }
+  
+    h2 {
+      font-size: 2rem;
+    }
+  
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+  

@@ -1,0 +1,108 @@
+<div class="container mt-4">
+    <!-- User Stats -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Total Users</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ totalUsers }}</h5>
+            <p class="card-text">New Signups: {{ newSignups }}</p>
+            <p class="card-text">Active Users: {{ activeUsers }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">User Growth</div>
+          <div class="card-body">
+            <p class="card-text">Growth in the past months:</p>
+            <ul>
+              <li *ngFor="let data of userGrowthData">{{ data }} users</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Course Stats -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Total Courses</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ totalCourses }}</h5>
+            <p class="card-text">Active Courses: {{ activeCourses }}</p>
+            <p class="card-text">Inactive Courses: {{ inactiveCourses }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Popular Courses</div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let course of popularCourses">{{ course }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Challenges & Rewards Stats -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Challenges</div>
+          <div class="card-body">
+            <h5 class="card-title">Active Challenges: {{ activeChallenges }}</h5>
+            <p class="card-text">Rewards Given: {{ rewardsGiven }}</p>
+            <p class="card-text">Users Participated: {{ challengeParticipation }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Revenue Stats (if applicable) -->
+    <div class="row" *ngIf="totalRevenue">
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Total Revenue</div>
+          <div class="card-body">
+            <h5 class="card-title">${{ totalRevenue }}</h5>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Recent Transactions</div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let transaction of recentTransactions">
+                {{ transaction.user }} purchased {{ transaction.course }} for ${{ transaction.amount }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Admin Activity Logs -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-light mb-3">
+          <div class="card-header">Admin Activity Logs</div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let activity of adminActivity">
+                {{ activity.action }} on {{ activity.timestamp }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,142 @@
+/* Navbar Styles */
+.navbar {
+    padding: 10px 20px; /* Adjusted padding for a compact look */
+    background-color: #ffffff; /* White background as fallback */
+    background-image: url('./Assets/bg.jpg'), url('./Assets/hero-bg.jpg'); /* Two background images */
+    background-size: cover; /* Ensure background covers the navbar */
+    background-position: center, center; /* Center both images */
+    background-repeat: no-repeat, no-repeat; /* Avoid repeating the images */
+    animation: slideBackground 8s ease-in-out infinite alternate; /* Animate the background */
+    border-bottom: 2px solid #007bff; /* Professional border for separation */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center; /* Center items vertically */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+    z-index: 1000; /* Ensure navbar stays on top */
+    position: relative; /* For proper stacking with other elements */
+}
+
+/* Keyframe Animation for Background Transition */
+@keyframes slideBackground {
+    0% {
+        background-image: url('./Assets/hero-bg.jpg'), url('./Assets/bg.jpg');
+        background-position: 0% 50%, 100% 50%;
+    }
+    50% {
+        background-position: 50% 50%, 50% 50%;
+    }
+    100% {
+        background-position: 100% 50%, 0% 50%;
+    }
+}
+
+/* Logo Styles */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    height: 50px; /* Adjust height as needed */
+    text-indent: -9999px; /* Hides text but keeps for accessibility */
+    background-image: url('./Assets/Logo.jpg'); /* Path to your logo image */
+    background-size: contain; /* Fit logo in the available space */
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px; /* Adjust width to fit the logo */
+}
+
+.navbar-brand:after {
+    content: "AK"; /* Optionally add text if the logo is not visible */
+    position: absolute;
+    visibility: hidden;
+}
+
+/* Navigation Items */
+.navbar-nav {
+    display: flex; /* Horizontal alignment of nav items */
+    align-items: center; /* Center items vertically */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 25px; /* Space between nav items */
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600; /* Bold text for emphasis */
+    color: #ffffff; /* Dark color for readability */
+    text-transform: uppercase; /* Uppercase for a professional look */
+    padding: 10px 15px; /* Padding for better click area */
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover effects */
+    display: inline-block; /* Ensure link is treated as a block for better clickability */
+    cursor: pointer; /* Change cursor to pointer for clickable links */
+}
+
+/* Hover Effects */
+.navbar-nav .nav-link:hover {
+    background-color: #007bff; /* Highlight background color on hover */
+    color: white; /* Change text color on hover */
+}
+
+/* Toggler Button (Mobile) */
+.navbar-toggler {
+    border: none; /* Remove default border */
+    background-color: transparent;
+}
+
+.navbar-toggler-icon {
+    color: #007bff; /* Custom color for the icon */
+}
+
+/* Search Form Styles */
+.form-inline {
+    display: flex; /* Flexbox for input and button */
+    align-items: center; /* Center items vertically */
+}
+
+.form-inline .form-control {
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ced4da; /* Light border */
+    padding: 8px 12px; /* Padding for input */
+    margin-right: 10px; /* Space between input and button */
+    transition: border-color 0.3s; /* Transition for focus effect */
+}
+
+.form-inline .form-control:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Shadow effect on focus */
+}
+
+/* Button Styles */
+.btn-outline-success {
+    border-radius: 5px; /* Rounded corners */
+    border: 2px solid #007bff; /* Border color */
+    color: #007bff; /* Text color */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover */
+}
+
+.btn-outline-success:hover {
+    background-color: #007bff; /* Button background on hover */
+    color: white; /* Text color on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin-left: 15px; /* Adjust spacing for smaller screens */
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 14px; /* Font size adjustment for smaller screens */
+    }
+
+    .form-inline {
+        flex-direction: column; /* Stack input and button on smaller screens */
+        margin-top: 10px; /* Space between nav and form */
+    }
+
+    .navbar-brand {
+        width: 40px; /* Adjust width for smaller screens */
+        height: 40px; /* Adjust height for smaller screens */
+        background-size: contain; /* Make sure logo is properly contained */
+    }
+}

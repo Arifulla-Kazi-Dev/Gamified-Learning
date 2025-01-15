@@ -1,0 +1,19 @@
+<div *ngIf="course" class="course-detail">
+  <h2>{{ course.title }}</h2>
+  <div class="course-image" [ngClass]="'course-image-' + course.id"></div> <!-- Dynamically assigned class for CSS background -->
+  <p><strong>Description:</strong> {{ course.description }}</p>
+  <p><strong>Duration:</strong> {{ course.duration }}</p>
+  <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+  <p><strong>Category:</strong> {{ course.category }}</p>
+  <button (click)="goToCourse(course.url)">Enroll Now</button>
+</div>
+
+<h3>Other Courses</h3>
+<div class="course-list">
+  <div *ngFor="let course of courses" class="course-item">
+    <div class="course-image" [ngClass]="'course-image-' + course.id"></div> <!-- Dynamically assigned class for CSS background -->
+    <h4>{{ course.title }}</h4>
+    <p>{{ course.description }}</p>
+    <button (click)="goToCourse(course.url)">View Course</button>
+  </div>
+</div>

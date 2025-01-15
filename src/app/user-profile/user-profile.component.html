@@ -1,0 +1,21 @@
+<div class="profile">
+    <h2>Your Profile</h2>
+    <h3>Selected Avatar</h3>
+    <div class="avatar-preview" [ngClass]="selectedAvatar?.class">
+      <p>{{ selectedAvatar?.name }}</p>
+    </div>
+  
+    <h3>Available Avatars</h3>
+    <div class="avatar-selection">
+      <div
+        *ngFor="let avatar of avatarOptions"
+        class="avatar-option"
+        [ngClass]="avatar.class"
+        (click)="selectAvatar(avatar)"
+        [class.locked]="!hasUnlocked(avatar)"
+      >
+        <p>{{ avatar.name }}</p>
+      </div>
+    </div>
+  </div>
+  

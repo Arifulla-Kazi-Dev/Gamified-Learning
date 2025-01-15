@@ -1,0 +1,112 @@
+.courses-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .search-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input,
+  .filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .course-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .course-image {
+    width: 100%;
+    height: 180px; /* Fixed height for uniformity */
+    border-radius: 8px;
+    background-size: cover; /* Ensures the image covers the area */
+    background-position: center; /* Centers the image */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Adds a hover effect */
+  }
+  
+  .course-image:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+  }
+  
+  /* Specific Background Images for Courses */
+  .course-image.course-image-1 {
+    background-image: url('./../Assets/course1.jpg');
+  }
+  
+  .course-image.course-image-2 {
+    background-image: url('./../Assets/course2.jpg');
+  }
+  
+  .course-image.course-image-3 {
+    background-image: url('./../Assets/course3.jpg');
+  }
+  
+  .course-image.course-image-4 {
+    background-image: url('./../Assets/course4');
+  }
+  
+  .course-image.course-image-5 {
+    background-image: url('./../Assets/course5.jpg');
+  }
+  
+  .course-image.course-image-6 {
+    background-image: url('./../Assets/course6.jpg');
+  }
+  
+  .course-image.course-image-7 {
+    background-image: url('./../Assets/course7.jpg');
+  }
+  
+  .course-image.course-image-8 {
+    background-image: url('./../Assets/course8.jpg');
+  }
+  
+  .course-image.course-image-9 {
+    background-image: url('./../Assets/course9.jpg');
+  }
+  
+  .course-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+  }
+  
+  .details-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .details-button:hover {
+    background-color: #45a049;
+  }
+  
