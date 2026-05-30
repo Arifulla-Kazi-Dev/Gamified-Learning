@@ -1,75 +1,163 @@
-.hero-section {
-    position: relative; /* Position relative for absolute positioning of the ::before pseudo-element */
-    text-align: center;
-    padding: 50px;
-    background-image: url('./../Assets/hero-bg.jpg'); /* Adjusted path */
-    background-size: cover;
-    color: white;
-    overflow: hidden; /* Prevent overflow */
-    z-index: 1; /* Ensure it is above the pseudo-element */
+.home-hero {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72)),
+    url('/assets/course-bg.jpg') center/cover;
+  min-height: 430px;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute; /* Absolutely position the pseudo-element */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('./../Assets/animated-bg.jpg'); /* Adjusted path */
-    background-size: cover; /* Cover the entire section */
-    background-position: center; /* Center the image */
-    z-index: -1; /* Send it behind the content */
-    opacity: 0.7; /* Adjust opacity as needed */
-    animation: fadeIn 8s ease-in-out infinite; /* Optional: modify duration */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
 }
 
-/* Optional: Keyframes for the fade-in animation */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: 0.7; }
-    100% { opacity: 0; }
+.mission-card {
+  background: var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 430px;
+  overflow: hidden;
+  padding: 1.4rem;
+  position: relative;
 }
 
-.hero-section h1 {
-    font-size: 3rem;
+.mission-card::after {
+  background: linear-gradient(145deg, rgba(31, 157, 143, 0.35), rgba(242, 109, 91, 0.28));
+  content: "";
+  inset: auto 0 0;
+  height: 42%;
+  position: absolute;
 }
 
-.hero-section p {
-    font-size: 1.5rem;
+.mission-card > * {
+  position: relative;
+  z-index: 1;
 }
 
-.cta-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.mission-card h2 {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  margin: 1.4rem 0 0.8rem;
 }
 
-.features-overview {
-    text-align: center;
-    padding: 50px 0;
+.mission-card p,
+.mission-meta span {
+  color: rgba(255, 255, 255, 0.76);
 }
 
-.features-overview h2 {
-    margin-bottom: 30px;
-    font-size: 2rem;
+.mission-card .progress-track {
+  background: rgba(255, 255, 255, 0.18);
+  margin-top: auto;
 }
 
-.feature-list {
-    display: flex;
-    justify-content: space-around;
+.mission-meta {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
 }
 
-.feature-item {
-    width: 20%;
+.quest-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.testimonials-section {
-    background-color: #f9f9f9;
-    padding: 40px;
-    text-align: center;
+.quest-card,
+.mini-course {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(27, 34, 58, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.quest-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.quest-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.quest-card span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.home-course-strip {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-course {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  min-height: 170px;
+  overflow: hidden;
+}
+
+.mini-course img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.mini-course div {
+  padding: 1rem;
+}
+
+.mini-course h3 {
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0.7rem 0 0.45rem;
+}
+
+.mini-course p {
+  color: var(--muted);
+  display: -webkit-box;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-bottom: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.compact {
+  min-height: 40px;
+  padding-inline: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .home-hero,
+  .mission-card {
+    min-height: auto;
+  }
+
+  .quest-grid,
+  .home-course-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-actions {
+    display: grid;
+  }
+
+  .mini-course {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-course img {
+    aspect-ratio: 16 / 9;
+  }
 }

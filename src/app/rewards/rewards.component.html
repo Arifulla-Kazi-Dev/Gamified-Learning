@@ -1,1 +1,72 @@
-<p>rewards works!</p>
+<section class="page rewards-page">
+  <div class="rewards-hero">
+    <div>
+      <p class="eyebrow">Rewards</p>
+      <h1>Turn practice into visible progress.</h1>
+      <p class="lede">
+        XP, badges, streak rewards, and unlockables make the learning loop feel complete without cluttering the course flow.
+      </p>
+    </div>
+    <div class="level-card">
+      <span>Level 4</span>
+      <strong>{{ totalXp }} XP</strong>
+      <div class="progress-track">
+        <span class="progress-fill" [style.width.%]="levelProgress"></span>
+      </div>
+      <small>{{ nextLevelXp - totalXp }} XP to Level 5</small>
+    </div>
+  </div>
+
+  <div class="grid grid-3 reward-metrics">
+    <article class="metric-card">
+      <span>Weekly goal</span>
+      <strong>{{ weeklyGoal }}%</strong>
+    </article>
+    <article class="metric-card">
+      <span>Unlocked badges</span>
+      <strong>18</strong>
+    </article>
+    <article class="metric-card">
+      <span>Spendable points</span>
+      <strong>2,140</strong>
+    </article>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Badge Board</p>
+      <h2>Skill achievements</h2>
+    </div>
+  </div>
+
+  <div class="badge-grid">
+    <article class="badge-card" *ngFor="let badge of badges" [class.locked]="!badge.unlocked">
+      <div class="badge-icon">{{ badge.name.charAt(0) }}</div>
+      <div>
+        <span class="tag">{{ badge.rarity }}</span>
+        <h3>{{ badge.name }}</h3>
+        <p>{{ badge.description }}</p>
+        <div class="progress-track">
+          <span class="progress-fill" [style.width.%]="badge.progress"></span>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Reward Shop</p>
+      <h2>Use points for profile polish and challenge support</h2>
+    </div>
+  </div>
+
+  <div class="shop-grid">
+    <article class="shop-card" *ngFor="let reward of rewards">
+      <div>
+        <h3>{{ reward.name }}</h3>
+        <span>{{ reward.status }}</span>
+      </div>
+      <strong>{{ reward.cost }}</strong>
+    </article>
+  </div>
+</section>

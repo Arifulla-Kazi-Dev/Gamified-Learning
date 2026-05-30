@@ -1,21 +1,55 @@
-<div class="profile">
-    <h2>Your Profile</h2>
-    <h3>Selected Avatar</h3>
-    <div class="avatar-preview" [ngClass]="selectedAvatar?.class">
-      <p>{{ selectedAvatar?.name }}</p>
+<section class="page profile-page">
+  <div class="profile-hero">
+    <div>
+      <p class="eyebrow">Profile</p>
+      <h1>Shape your learner identity.</h1>
+      <p class="lede">
+        Avatar unlocks, badges, and progress stats stay connected to real course and challenge activity.
+      </p>
     </div>
-  
-    <h3>Available Avatars</h3>
-    <div class="avatar-selection">
-      <div
-        *ngFor="let avatar of avatarOptions"
-        class="avatar-option"
-        [ngClass]="avatar.class"
-        (click)="selectAvatar(avatar)"
-        [class.locked]="!hasUnlocked(avatar)"
-      >
-        <p>{{ avatar.name }}</p>
-      </div>
-    </div>
+    <div class="avatar-preview" [ngClass]="selectedAvatar.class" aria-label="Selected avatar"></div>
   </div>
-  
+
+  <div class="grid grid-4 profile-stats">
+    <article class="metric-card" *ngFor="let stat of stats">
+      <span>{{ stat.label }}</span>
+      <strong>{{ stat.value }}</strong>
+    </article>
+  </div>
+
+  <div class="profile-layout">
+    <section class="avatar-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Avatars</p>
+          <h2>Unlocked looks</h2>
+        </div>
+      </div>
+
+      <div class="avatar-selection">
+        <button
+          *ngFor="let avatar of avatarOptions"
+          type="button"
+          class="avatar-option"
+          [ngClass]="avatar.class"
+          [class.selected]="selectedAvatar.id === avatar.id"
+          [class.locked]="!hasUnlocked(avatar)"
+          (click)="selectAvatar(avatar)"
+        >
+          <span>{{ avatar.name }}</span>
+          <small>Level {{ avatar.requiredLevel }}</small>
+        </button>
+      </div>
+
+      <p class="profile-notice" *ngIf="notice">{{ notice }}</p>
+    </section>
+
+    <aside class="badge-panel">
+      <p class="eyebrow">Recent Badges</p>
+      <article *ngFor="let badge of recentBadges">
+        <span>{{ badge.charAt(0) }}</span>
+        <strong>{{ badge }}</strong>
+      </article>
+    </aside>
+  </div>
+</section>

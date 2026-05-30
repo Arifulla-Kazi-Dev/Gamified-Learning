@@ -1,20 +1,39 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router'; // Import the Router service
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+interface NavItem {
+  label: string;
+  path: string;
+  exact: boolean;
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'] // Ensure this is 'styleUrls' not 'styleUrl'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
-  constructor(private router: Router) {}
+  readonly navItems: NavItem[] = [
+    { label: 'Home', path: '/home', exact: true },
+    { label: 'Dashboard', path: '/dashboard', exact: true },
+    { label: 'Courses', path: '/courses', exact: false },
+    { label: 'Challenges', path: '/challenges', exact: true },
+    { label: 'Rewards', path: '/rewards', exact: true },
+    { label: 'Leaderboard', path: '/leaderboard', exact: true },
+    { label: 'Profile', path: '/user-profile', exact: true },
+    { label: 'Admin', path: '/admin', exact: true }
+  ];
 
-  navigateTo(path: string) {
-    this.router.navigate([path]);
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 }

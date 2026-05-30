@@ -1,30 +1,58 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="app-shell">
+  <header class="topbar">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" routerLink="/home" (click)="closeMenu()" aria-label="LevelUp Learning home">
+        <span class="brand-mark">L</span>
+        <span class="brand-text">
+          <strong>LevelUp</strong>
+          <small>Learning</small>
+        </span>
+      </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('home')">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('courses')">Courses</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('admin')">Admin Panel</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('user-profile')">User Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateTo('challenges')">Challenges</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+      <button
+        class="menu-toggle"
+        type="button"
+        (click)="toggleMenu()"
+        [class.open]="isMenuOpen"
+        [attr.aria-expanded]="isMenuOpen"
+        aria-controls="primary-navigation"
+        aria-label="Toggle navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<!-- This is where your routed components will display -->
-  <router-outlet></router-outlet>
+      <button
+        class="nav-backdrop"
+        type="button"
+        [class.open]="isMenuOpen"
+        (click)="closeMenu()"
+        aria-hidden="true"
+        tabindex="-1"
+      ></button>
+
+      <div id="primary-navigation" class="nav-panel" [class.open]="isMenuOpen">
+        <a
+          *ngFor="let item of navItems"
+          class="nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.exact }"
+          (click)="closeMenu()"
+        >
+          {{ item.label }}
+        </a>
+
+        <div class="nav-progress" aria-label="Current learning status">
+          <span>Level 4</span>
+          <strong>8,240 XP</strong>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

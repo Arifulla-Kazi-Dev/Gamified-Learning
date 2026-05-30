@@ -1,142 +1,288 @@
-/* Navbar Styles */
-.navbar {
-    padding: 10px 20px; /* Adjusted padding for a compact look */
-    background-color: #ffffff; /* White background as fallback */
-    background-image: url('./Assets/bg.jpg'), url('./Assets/hero-bg.jpg'); /* Two background images */
-    background-size: cover; /* Ensure background covers the navbar */
-    background-position: center, center; /* Center both images */
-    background-repeat: no-repeat, no-repeat; /* Avoid repeating the images */
-    animation: slideBackground 8s ease-in-out infinite alternate; /* Animate the background */
-    border-bottom: 2px solid #007bff; /* Professional border for separation */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: space-between; /* Space between logo and links */
-    align-items: center; /* Center items vertically */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
-    z-index: 1000; /* Ensure navbar stays on top */
-    position: relative; /* For proper stacking with other elements */
+.app-shell {
+  min-height: 100vh;
 }
 
-/* Keyframe Animation for Background Transition */
-@keyframes slideBackground {
-    0% {
-        background-image: url('./Assets/hero-bg.jpg'), url('./Assets/bg.jpg');
-        background-position: 0% 50%, 100% 50%;
-    }
-    50% {
-        background-position: 50% 50%, 50% 50%;
-    }
-    100% {
-        background-position: 100% 50%, 0% 50%;
-    }
+.topbar {
+  background: rgba(249, 250, 252, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(27, 34, 58, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
 
-/* Logo Styles */
-.navbar-brand {
-    display: flex;
+.nav-shell {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1180px;
+  min-height: 72px;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.brand {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  gap: 0.75rem;
+  min-width: max-content;
+  text-decoration: none;
+}
+
+.brand-mark {
+  align-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--coral));
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(31, 157, 143, 0.24);
+  color: #fff;
+  display: inline-flex;
+  font-weight: 900;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.brand-text {
+  display: grid;
+  line-height: 1.05;
+}
+
+.brand-text strong {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.brand-text small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.nav-panel {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+.nav-link {
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+  padding: 0.68rem 0.85rem;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #fff;
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  box-shadow: inset 0 0 0 1px rgba(31, 157, 143, 0.24), 0 8px 18px rgba(27, 34, 58, 0.07);
+}
+
+.nav-progress {
+  align-items: center;
+  background: var(--ink);
+  border-radius: 999px;
+  color: #fff;
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-left: 0.5rem;
+  padding: 0.56rem 0.8rem;
+  white-space: nowrap;
+}
+
+.nav-progress span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.nav-progress strong {
+  font-size: 0.86rem;
+}
+
+.menu-toggle {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(27, 34, 58, 0.1);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  height: 42px;
+  justify-content: center;
+  padding: 0;
+  width: 42px;
+  z-index: 42;
+}
+
+.menu-toggle span {
+  background: var(--ink);
+  border-radius: 999px;
+  display: block;
+  height: 2px;
+  transition: transform 180ms ease, opacity 180ms ease;
+  width: 18px;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.app-main {
+  min-height: calc(100vh - 72px);
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .topbar {
+    background: rgba(249, 250, 252, 0.94);
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    height: 46px;
+    transition: box-shadow 180ms ease, transform 180ms ease;
+    width: 46px;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle.open {
+    box-shadow: 0 12px 22px rgba(27, 34, 58, 0.1);
+  }
+
+  .nav-panel {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(27, 34, 58, 0.1);
+    border-radius: 22px;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: 0.45rem;
+    left: 1rem;
+    max-height: calc(100dvh - 96px);
+    opacity: 0;
+    overflow-y: auto;
+    padding: 0.85rem;
+    pointer-events: none;
+    position: fixed;
+    right: 1rem;
+    top: 82px;
+    transform: translateY(-10px) scale(0.98);
+    transform-origin: top center;
+    transition: opacity 220ms ease, transform 220ms ease;
+    z-index: 41;
+  }
+
+  .nav-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .nav-backdrop {
+    background: rgba(27, 34, 58, 0.22);
+    border: 0;
+    display: block;
+    inset: 72px 0 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transition: opacity 220ms ease;
+    z-index: 40;
+  }
+
+  .nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
     align-items: center;
-    height: 50px; /* Adjust height as needed */
-    text-indent: -9999px; /* Hides text but keeps for accessibility */
-    background-image: url('./Assets/Logo.jpg'); /* Path to your logo image */
-    background-size: contain; /* Fit logo in the available space */
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 50px; /* Adjust width to fit the logo */
+    background: #f8fafc;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 52px;
+    padding: 0.95rem 1rem;
+  }
+
+  .nav-link::after {
+    color: rgba(27, 34, 58, 0.36);
+    content: ">";
+    font-weight: 900;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: #fff;
+    transform: none;
+  }
+
+  .nav-link.active {
+    box-shadow: inset 4px 0 0 var(--accent), inset 0 0 0 1px rgba(31, 157, 143, 0.18);
+  }
+
+  .nav-link.active::after {
+    color: var(--accent-dark);
+  }
+
+  .nav-progress {
+    border-radius: 14px;
+    justify-content: center;
+    margin: 0.45rem 0 0;
+    min-height: 52px;
+    width: 100%;
+  }
 }
 
-.navbar-brand:after {
-    content: "AK"; /* Optionally add text if the logo is not visible */
-    position: absolute;
-    visibility: hidden;
-}
+@media (max-width: 520px) {
+  .brand-text small {
+    display: none;
+  }
 
-/* Navigation Items */
-.navbar-nav {
-    display: flex; /* Horizontal alignment of nav items */
-    align-items: center; /* Center items vertically */
-}
+  .nav-shell {
+    min-height: 64px;
+    padding: 0 0.85rem;
+  }
 
-.navbar-nav .nav-item {
-    margin-left: 25px; /* Space between nav items */
-}
+  .nav-panel {
+    border-radius: 18px;
+    left: 0.75rem;
+    max-height: calc(100dvh - 84px);
+    padding: 0.65rem;
+    right: 0.75rem;
+    top: 74px;
+  }
 
-.navbar-nav .nav-link {
-    font-weight: 600; /* Bold text for emphasis */
-    color: #ffffff; /* Dark color for readability */
-    text-transform: uppercase; /* Uppercase for a professional look */
-    padding: 10px 15px; /* Padding for better click area */
-    border-radius: 5px; /* Slightly rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Transition for hover effects */
-    display: inline-block; /* Ensure link is treated as a block for better clickability */
-    cursor: pointer; /* Change cursor to pointer for clickable links */
-}
+  .nav-backdrop {
+    inset: 64px 0 0;
+  }
 
-/* Hover Effects */
-.navbar-nav .nav-link:hover {
-    background-color: #007bff; /* Highlight background color on hover */
-    color: white; /* Change text color on hover */
-}
-
-/* Toggler Button (Mobile) */
-.navbar-toggler {
-    border: none; /* Remove default border */
-    background-color: transparent;
-}
-
-.navbar-toggler-icon {
-    color: #007bff; /* Custom color for the icon */
-}
-
-/* Search Form Styles */
-.form-inline {
-    display: flex; /* Flexbox for input and button */
-    align-items: center; /* Center items vertically */
-}
-
-.form-inline .form-control {
-    border-radius: 5px; /* Rounded corners */
-    border: 1px solid #ced4da; /* Light border */
-    padding: 8px 12px; /* Padding for input */
-    margin-right: 10px; /* Space between input and button */
-    transition: border-color 0.3s; /* Transition for focus effect */
-}
-
-.form-inline .form-control:focus {
-    border-color: #007bff; /* Change border color on focus */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Shadow effect on focus */
-}
-
-/* Button Styles */
-.btn-outline-success {
-    border-radius: 5px; /* Rounded corners */
-    border: 2px solid #007bff; /* Border color */
-    color: #007bff; /* Text color */
-    transition: background-color 0.3s, color 0.3s; /* Transition for hover */
-}
-
-.btn-outline-success:hover {
-    background-color: #007bff; /* Button background on hover */
-    color: white; /* Text color on hover */
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .navbar-nav .nav-item {
-        margin-left: 15px; /* Adjust spacing for smaller screens */
-    }
-
-    .navbar-nav .nav-link {
-        font-size: 14px; /* Font size adjustment for smaller screens */
-    }
-
-    .form-inline {
-        flex-direction: column; /* Stack input and button on smaller screens */
-        margin-top: 10px; /* Space between nav and form */
-    }
-
-    .navbar-brand {
-        width: 40px; /* Adjust width for smaller screens */
-        height: 40px; /* Adjust height for smaller screens */
-        background-size: contain; /* Make sure logo is properly contained */
-    }
+  .brand-mark {
+    border-radius: 12px;
+    height: 40px;
+    width: 40px;
+  }
 }

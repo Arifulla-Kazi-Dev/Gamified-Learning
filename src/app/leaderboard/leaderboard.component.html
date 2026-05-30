@@ -1,1 +1,61 @@
-<p>leaderboard works!</p>
+<section class="page leaderboard-page">
+  <div class="leaderboard-hero">
+    <div>
+      <p class="eyebrow">Leaderboard</p>
+      <h1>Compete on consistency, not noise.</h1>
+      <p class="lede">
+        Rankings combine XP, streaks, quiz accuracy, and challenge completions so steady learners stay visible.
+      </p>
+    </div>
+    <div class="season-card">
+      <span>Season ends in</span>
+      <strong>4 days</strong>
+    </div>
+  </div>
+
+  <div class="podium-grid">
+    <article class="podium-card" *ngFor="let entry of podium">
+      <span class="rank">#{{ entry.rank }}</span>
+      <h2>{{ entry.name }}</h2>
+      <p>{{ entry.track }}</p>
+      <strong>{{ entry.xp }} XP</strong>
+    </article>
+  </div>
+
+  <section class="surface-card leaderboard-table">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Weekly Rank</p>
+        <h2>Top learners</h2>
+      </div>
+      <span class="tag">Live sample data</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Learner</th>
+            <th>Track</th>
+            <th>XP</th>
+            <th>Streak</th>
+            <th>Accuracy</th>
+            <th>Move</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of leaders">
+            <td>#{{ entry.rank }}</td>
+            <td><strong>{{ entry.name }}</strong></td>
+            <td>{{ entry.track }}</td>
+            <td>{{ entry.xp }}</td>
+            <td>{{ entry.streak }} days</td>
+            <td>{{ entry.accuracy }}%</td>
+            <td><span class="status-pill">{{ entry.change }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>

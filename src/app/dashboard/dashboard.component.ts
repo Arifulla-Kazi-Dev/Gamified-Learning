@@ -1,48 +1,55 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { COURSES } from '../shared/course-data';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
+  readonly focusCourse = COURSES[0];
+  readonly inProgressCourses = COURSES.filter((course) => course.progress > 20).slice(0, 4);
 
-  // User Stats
-  totalUsers: number = 1500;
-  activeUsers: number = 350;
-  newSignups: number = 25;
-  userGrowthData: number[] = [1200, 1300, 1400, 1500]; // Simulating user growth
-
-  // Course Stats
-  totalCourses: number = 45;
-  activeCourses: number = 35;
-  inactiveCourses: number = 10;
-  popularCourses: string[] = ['Intro to Python', 'Advanced Angular', 'Data Science Basics'];
-
-  // Challenges & Rewards
-  activeChallenges: number = 5;
-  rewardsGiven: number = 200;
-  challengeParticipation: number = 120;
-
-  // Revenue Data (if applicable)
-  totalRevenue: number = 12500; // Example total revenue in USD
-  recentTransactions: any[] = [
-    { user: 'John Doe', course: 'Intro to JavaScript', amount: 50 },
-    { user: 'Jane Smith', course: 'Machine Learning Basics', amount: 75 }
+  readonly learnerStats = [
+    { label: 'XP earned', value: '8,240', detail: '+420 today' },
+    { label: 'Course progress', value: '64%', detail: '3 active paths' },
+    { label: 'Quiz accuracy', value: '86%', detail: '+4% this week' },
+    { label: 'Challenge streak', value: '12', detail: 'days in a row' }
   ];
 
-  // Admin Activity Logs
-  adminActivity: any[] = [
-    { action: 'Published a course', timestamp: '2024-10-20' },
-    { action: 'Deactivated a user', timestamp: '2024-10-21' }
+  readonly weeklyMomentum = [
+    { day: 'Mon', xp: 220 },
+    { day: 'Tue', xp: 300 },
+    { day: 'Wed', xp: 180 },
+    { day: 'Thu', xp: 360 },
+    { day: 'Fri', xp: 420 },
+    { day: 'Sat', xp: 250 },
+    { day: 'Sun', xp: 150 }
   ];
 
-  constructor() {}
+  readonly todayPlan = [
+    { title: 'Complete Angular forms checkpoint', type: 'Quiz', xp: 180, status: 'Ready' },
+    { title: 'Submit daily string challenge', type: 'Challenge', xp: 90, status: 'In progress' },
+    { title: 'Review routing notes', type: 'Lesson', xp: 60, status: 'Queued' }
+  ];
 
-  ngOnInit(): void {}
+  readonly skillFocus = [
+    { name: 'Angular routing', progress: 78 },
+    { name: 'Responsive UI', progress: 72 },
+    { name: 'Algorithm speed', progress: 58 },
+    { name: 'Testing habits', progress: 46 }
+  ];
 
+  readonly earnedBadges = [
+    { name: 'Quiz Closer', description: 'Finished 5 quizzes above 80%.' },
+    { name: 'Challenge Spark', description: 'Solved 3 coding challenges.' },
+    { name: 'Steady Streak', description: 'Maintained a 12-day learning run.' }
+  ];
+
+  getMaxXp(): number {
+    return Math.max(...this.weeklyMomentum.map((item) => item.xp));
+  }
 }

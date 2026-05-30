@@ -1,0 +1,51 @@
+.settings-hero,
+.settings-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(27, 34, 58, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.settings-hero {
+  padding: clamp(1.3rem, 4vw, 2.6rem);
+}
+
+.settings-panel {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1.2rem;
+}
+
+.settings-panel label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 900;
+}
+
+.toggle-row {
+  align-items: center;
+  border-top: 1px solid rgba(27, 34, 58, 0.08);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.toggle-row span {
+  color: var(--muted);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.toggle-row input {
+  accent-color: var(--accent);
+  height: 24px;
+  width: 24px;
+}
+
+@media (max-width: 560px) {
+  .toggle-row {
+    align-items: start;
+  }
+}

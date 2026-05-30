@@ -1,34 +1,76 @@
-<div class="hero-section">
-    <h1>Learn. Challenge. Level Up!</h1>
-    <p>Master new skills in a fun and rewarding way.</p>
-    <button (click)="navigateTo('courses')" class="cta-button">Get Started</button>
-  </div>
-  
-  <div class="features-overview">
-    <h2>Why Choose Us?</h2>
-    <div class="feature-list">
-      <div class="feature-item">
-        <h3>Interactive Courses</h3>
-        <p>Engage with hands-on learning experiences designed for real-world application.</p>
-      </div>
-      <div class="feature-item">
-        <h3>Challenges & Quizzes</h3>
-        <p>Test your knowledge and skills through fun challenges and quizzes.</p>
-      </div>
-      <div class="feature-item">
-        <h3>Earn Rewards</h3>
-        <p>Gain points, badges, and rewards as you progress through courses.</p>
-      </div>
-      <div class="feature-item">
-        <h3>Leaderboard</h3>
-        <p>Compete with others and see how you rank on the global leaderboard.</p>
+<section class="page home-page">
+  <div class="page-hero">
+    <div class="hero-panel home-hero">
+      <p class="eyebrow">Today&apos;s Learning Board</p>
+      <h1>Learn, quiz, challenge, and level up.</h1>
+      <p class="lede">
+        A focused education-tech workspace where course progress, practice quests, badges,
+        and challenges move together without making the experience noisy.
+      </p>
+
+      <div class="hero-actions">
+        <button type="button" class="primary-action" (click)="navigateTo('dashboard')">Open Dashboard</button>
+        <button type="button" class="ghost-action" (click)="navigateTo('courses')">Browse Courses</button>
       </div>
     </div>
+
+    <aside class="mission-card" aria-label="Active course progress">
+      <span class="status-pill">Level 4 learner</span>
+      <h2>{{ activeCourse.title }}</h2>
+      <p>{{ activeCourse.nextMilestone }}</p>
+      <div class="progress-track" aria-label="Active course progress">
+        <span class="progress-fill" [style.width.%]="activeCourse.progress"></span>
+      </div>
+      <div class="mission-meta">
+        <span>{{ activeCourse.progress }}% complete</span>
+        <strong>{{ activeCourse.xp }} XP</strong>
+      </div>
+    </aside>
   </div>
-  
-  <div class="testimonials-section">
-    <h2>What Our Learners Say</h2>
-    <p>"This platform has made learning so much more engaging!" - User A</p>
-    <p>"I love the challenges and the leaderboard system." - User B</p>
+
+  <div class="grid grid-4">
+    <article class="metric-card" *ngFor="let stat of stats">
+      <span>{{ stat.label }}</span>
+      <strong>{{ stat.value }}</strong>
+    </article>
   </div>
-  
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Quest Stack</p>
+      <h2>Keep the streak moving</h2>
+    </div>
+    <button type="button" class="ghost-action compact" (click)="navigateTo('challenges')">View Challenges</button>
+  </div>
+
+  <div class="quest-grid">
+    <article class="quest-card" *ngFor="let quest of quests">
+      <div>
+        <h3>{{ quest.title }}</h3>
+        <span>{{ quest.meta }}</span>
+      </div>
+      <div class="progress-track">
+        <span class="progress-fill" [style.width.%]="quest.progress"></span>
+      </div>
+    </article>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Next Courses</p>
+      <h2>Recommended learning paths</h2>
+    </div>
+    <button type="button" class="ghost-action compact" (click)="navigateTo('courses')">See Catalog</button>
+  </div>
+
+  <div class="home-course-strip">
+    <article class="mini-course" *ngFor="let course of recommendedCourses">
+      <img [src]="course.image" [alt]="course.title" />
+      <div>
+        <span class="tag">{{ course.level }}</span>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+      </div>
+    </article>
+  </div>
+</section>

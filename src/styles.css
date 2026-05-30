@@ -1,13 +1,356 @@
-/* You can add global styles to this file, and also import other style files */
-/* styles.css */
+:root {
+  --ink: #1b223a;
+  --muted: #667085;
+  --soft: #eef2f6;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --accent: #1f9d8f;
+  --accent-dark: #13786e;
+  --coral: #f26d5b;
+  --amber: #f2b705;
+  --blue: #4578e6;
+  --violet: #7657d8;
+  --success: #16a36a;
+  --danger: #d64545;
+  --radius: 8px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 8px 18px rgba(27, 34, 58, 0.08);
+  --shadow-md: 0 16px 34px rgba(27, 34, 58, 0.12);
+  --shadow-lg: 0 24px 60px rgba(27, 34, 58, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    background-image: url('./app/Assets/bg1.jpg'); /* Replace with the path to your image */
-    background-size: cover; /* Ensures the image covers the entire viewport */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling of the image */
-    background-attachment: fixed; /* Keeps the image fixed during scrolling */
-    margin: 0;
-    padding: 0;
+  background:
+    linear-gradient(90deg, rgba(27, 34, 58, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(27, 34, 58, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, #f8fafc 0%, #eef6f5 46%, #fff7ec 100%);
+  background-size: 42px 42px, 42px 42px, auto;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(31, 157, 143, 0.34);
+  outline-offset: 3px;
+}
+
+.page {
+  animation: fade-up 420ms ease both;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 2rem 1rem 4rem;
+}
+
+.page-hero {
+  align-items: stretch;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  margin-bottom: 1.4rem;
+}
+
+.hero-panel,
+.surface-card,
+.metric-card,
+.course-card {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(27, 34, 58, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-panel {
+  overflow: hidden;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  position: relative;
+}
+
+.eyebrow {
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  margin: 0 0 0.6rem;
+  text-transform: uppercase;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page p {
+  margin-top: 0;
+}
+
+.page h1 {
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  letter-spacing: 0;
+  line-height: 0.96;
+  margin-bottom: 1rem;
+}
+
+.page h2 {
+  font-size: clamp(1.45rem, 2vw, 2.1rem);
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.lede {
+  color: #465166;
+  font-size: clamp(1rem, 1.3vw, 1.16rem);
+  line-height: 1.65;
+  max-width: 64ch;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 2rem 0 1rem;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.primary-action,
+.ghost-action,
+.danger-action {
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  font-weight: 900;
+  gap: 0.45rem;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.primary-action {
+  background: var(--ink);
+  box-shadow: 0 12px 24px rgba(27, 34, 58, 0.18);
+  color: #fff;
+}
+
+.ghost-action {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(27, 34, 58, 0.12);
+  color: var(--ink);
+}
+
+.danger-action {
+  background: #fff0ee;
+  color: #a9382e;
+}
+
+.primary-action:hover,
+.ghost-action:hover,
+.danger-action:hover {
+  transform: translateY(-2px);
+}
+
+.tag,
+.status-pill {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  gap: 0.3rem;
+  padding: 0.35rem 0.62rem;
+}
+
+.tag {
+  background: rgba(31, 157, 143, 0.12);
+  color: var(--accent-dark);
+}
+
+.status-pill {
+  background: #fff6d9;
+  color: #8a6500;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metric-card {
+  padding: 1rem;
+}
+
+.metric-card span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.progress-track {
+  background: #e6edf2;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--accent), var(--amber), var(--coral));
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  min-width: 0.5rem;
+  transition: width 360ms ease;
+}
+
+.form-control {
+  background: #fff;
+  border: 1px solid rgba(27, 34, 58, 0.14);
+  border-radius: var(--radius);
+  color: var(--ink);
+  min-height: 46px;
+  padding: 0.75rem 0.9rem;
+  width: 100%;
+}
+
+.form-control:focus {
+  border-color: rgba(31, 157, 143, 0.65);
+  box-shadow: 0 0 0 4px rgba(31, 157, 143, 0.12);
+  outline: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.data-table {
+  border-collapse: collapse;
+  min-width: 720px;
+  width: 100%;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid rgba(27, 34, 58, 0.08);
+  padding: 0.9rem;
+  text-align: left;
+}
+
+.data-table th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding-top: 1.25rem;
+  }
+
+  .page-hero,
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .hero-panel,
+  .surface-card,
+  .metric-card,
+  .course-card {
+    border-radius: var(--radius);
+  }
+
+  .primary-action,
+  .ghost-action,
+  .danger-action {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,1 +1,80 @@
-<p>lesson works!</p>
+<ng-container *ngIf="course as activeCourse">
+  <section class="page lesson-page" *ngIf="lesson as activeLesson">
+    <button type="button" class="ghost-action back-action" (click)="goToCourse()">Back to Course</button>
+
+    <div class="lesson-hero">
+      <div>
+        <span class="tag">{{ activeLesson.type }}</span>
+        <h1>{{ activeLesson.title }}</h1>
+        <p class="lede">{{ activeLesson.summary }}</p>
+      </div>
+
+      <aside class="lesson-status">
+        <span>{{ activeCourse.title }}</span>
+        <strong>{{ activeLesson.duration }}</strong>
+        <div class="progress-track">
+          <span class="progress-fill" [style.width.%]="activeCourse.progress"></span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="lesson-layout">
+      <section class="learning-panel">
+        <p class="eyebrow">Brief</p>
+        <h2>Practice the skill in a focused loop</h2>
+        <p>
+          Work through the concept, answer the checkpoint, and finish with a small applied task.
+          This keeps the course path connected to quizzes, challenges, and XP rewards.
+        </p>
+
+        <div class="checkpoint-list">
+          <article *ngFor="let checkpoint of checkpoints; let index = index">
+            <span>{{ index + 1 }}</span>
+            <p>{{ checkpoint }}</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="xp-panel">
+        <p class="eyebrow">Reward Preview</p>
+        <h2>+{{ activeLesson.type === 'Challenge' ? 140 : 90 }} XP</h2>
+        <p>Completing this module pushes {{ activeCourse.nextMilestone.toLowerCase() }} closer.</p>
+      </aside>
+    </div>
+
+    <section class="quiz-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Checkpoint</p>
+          <h2>Choose the strongest next step</h2>
+        </div>
+      </div>
+
+      <div class="option-grid">
+        <button
+          *ngFor="let option of quizOptions"
+          type="button"
+          class="option-card"
+          [class.selected]="selectedAnswer === option.label"
+          (click)="selectAnswer(option)"
+        >
+          {{ option.label }}
+        </button>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" class="primary-action" [disabled]="!selectedAnswer" (click)="submitQuiz()">
+          Check Answer
+        </button>
+        <button type="button" class="ghost-action" (click)="goToNextLesson()">Next Module</button>
+      </div>
+
+      <div class="feedback success" *ngIf="hasSubmitted && isSelectedCorrect()">
+        Correct. That keeps the work scoped, testable, and tied to the learning outcome.
+      </div>
+      <div class="feedback error" *ngIf="hasSubmitted && !isSelectedCorrect()">
+        Not quite. Look for the option that creates a small, verifiable learning loop.
+      </div>
+    </section>
+  </section>
+</ng-container>

@@ -23,41 +23,46 @@ export class AdminPanelComponent implements OnInit {
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Admin', active: false }
   ];
 
-  newUser: User = { id: 0, name: '', email: '', role: 'User', active: true }; // For adding a new user
-  emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/; // Email validation regex
+  newUser: User = { id: 0, name: '', email: '', role: 'User', active: true };
+  emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  formMessage = '';
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  // Method to toggle user status
-  toggleUserStatus(user: User) {
+  get activeCount(): number {
+    return this.users.filter((user) => user.active).length;
+  }
+
+  get adminCount(): number {
+    return this.users.filter((user) => user.role === 'Admin').length;
+  }
+
+  toggleUserStatus(user: User): void {
     user.active = !user.active;
   }
 
-  // Method to change user role
-  changeUserRole(user: User, newRole: string) {
+  changeUserRole(user: User, newRole: string): void {
     user.role = newRole;
   }
 
-  // Method to delete a user
-  deleteUser(userId: number) {
+  deleteUser(userId: number): void {
     this.users = this.users.filter(user => user.id !== userId);
   }
 
-  // Method to add a new user
-  addUser() {
+  addUser(): void {
     if (this.newUser.name && this.newUser.email.match(this.emailPattern)) {
-      this.newUser.id = this.users.length + 1;  // Assign a new unique ID
-      this.users.push({ ...this.newUser });     // Add the new user to the list
-      this.resetNewUser();                      // Reset the form
+      this.newUser.id = Math.max(0, ...this.users.map((user) => user.id)) + 1;
+      this.users.push({ ...this.newUser });
+      this.formMessage = `${this.newUser.name} was added.`;
+      this.resetNewUser();
     } else {
-      alert('Please provide a valid name and email.');
+      this.formMessage = 'Provide a valid name and email.';
     }
   }
 
-  // Reset the new user form
-  resetNewUser() {
+  resetNewUser(): void {
     this.newUser = { id: 0, name: '', email: '', role: 'User', active: true };
   }
 }

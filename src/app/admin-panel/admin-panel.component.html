@@ -1,75 +1,111 @@
-<div class="admin-panel-container">
-    <h2>Admin Panel - User Management</h2>
-  
-    <!-- Add New User Form -->
-    <h3>Add New User</h3>
-    <form (ngSubmit)="addUser()" #userForm="ngForm">
+<section class="page admin-page">
+  <div class="admin-hero">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Manage learners without losing the learning context.</h1>
+      <p class="lede">User status, role changes, and additions are organized for quick scanning.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-3 admin-metrics">
+    <article class="metric-card">
+      <span>Total users</span>
+      <strong>{{ users.length }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>Active users</span>
+      <strong>{{ activeCount }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>Admins</span>
+      <strong>{{ adminCount }}</strong>
+    </article>
+  </div>
+
+  <section class="admin-panel-card">
+    <div class="section-heading">
       <div>
-        <label for="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          [(ngModel)]="newUser.name"
-          name="name"
-          placeholder="Name"
-          required
-        />
+        <p class="eyebrow">Invite</p>
+        <h2>Add user</h2>
       </div>
-      <div>
-        <label for="email">Email</label>
+    </div>
+
+    <form class="user-form" (ngSubmit)="addUser()" #userForm="ngForm">
+      <label>
+        Name
+        <input class="form-control" type="text" [(ngModel)]="newUser.name" name="name" placeholder="Name" required />
+      </label>
+
+      <label>
+        Email
         <input
+          class="form-control"
           type="email"
-          id="email"
           [(ngModel)]="newUser.email"
           name="email"
           placeholder="Email"
           required
           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
-      </div>
-      <div>
-        <label for="role">Role</label>
-        <select [(ngModel)]="newUser.role" name="role" id="role">
+      </label>
+
+      <label>
+        Role
+        <select class="form-control" [(ngModel)]="newUser.role" name="role">
           <option value="User">User</option>
           <option value="Admin">Admin</option>
         </select>
-      </div>
-      <button type="submit" [disabled]="userForm.invalid">Add User</button>
+      </label>
+
+      <button type="submit" class="primary-action" [disabled]="userForm.invalid">Add User</button>
     </form>
-  
-    <!-- Display Existing Users -->
-    <h3>Manage Users</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <select [(ngModel)]="user.role" (change)="changeUserRole(user, user.role)">
-              <option value="User">User</option>
-              <option value="Admin">Admin</option>
-            </select>
-          </td>
-          <td>{{ user.active ? 'Active' : 'Inactive' }}</td>
-          <td>
-            <button (click)="toggleUserStatus(user)">
-              {{ user.active ? 'Deactivate' : 'Activate' }}
-            </button>
-            <button (click)="user.id !== undefined ? deleteUser(user.id) : null">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+
+    <p class="form-message" *ngIf="formMessage">{{ formMessage }}</p>
+  </section>
+
+  <section class="admin-panel-card">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Directory</p>
+        <h2>Manage users</h2>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td><strong>{{ user.name }}</strong></td>
+            <td>{{ user.email }}</td>
+            <td>
+              <select class="form-control table-select" [(ngModel)]="user.role" (change)="changeUserRole(user, user.role)">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </td>
+            <td><span class="status-pill">{{ user.active ? 'Active' : 'Inactive' }}</span></td>
+            <td>
+              <div class="action-row">
+                <button type="button" class="ghost-action" (click)="toggleUserStatus(user)">
+                  {{ user.active ? 'Deactivate' : 'Activate' }}
+                </button>
+                <button type="button" class="danger-action" (click)="deleteUser(user.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>

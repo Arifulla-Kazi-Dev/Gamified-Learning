@@ -1,1 +1,46 @@
-<p>settings works!</p>
+<section class="page settings-page">
+  <div class="settings-hero">
+    <div>
+      <p class="eyebrow">Settings</p>
+      <h1>Tune the learning rhythm.</h1>
+      <p class="lede">Personalize goals, reminders, challenge pace, and reward feedback.</p>
+    </div>
+  </div>
+
+  <section class="settings-panel">
+    <label>
+      Daily learning goal
+      <input class="form-control" type="number" min="10" max="180" step="5" [(ngModel)]="dailyGoal" />
+    </label>
+
+    <label>
+      Reminder time
+      <input class="form-control" type="time" [(ngModel)]="reminderTime" />
+    </label>
+
+    <label>
+      Challenge pace
+      <select class="form-control" [(ngModel)]="challengeMode">
+        <option value="calm">Calm</option>
+        <option value="balanced">Balanced</option>
+        <option value="intense">Intense</option>
+      </select>
+    </label>
+
+    <div class="toggle-row">
+      <div>
+        <strong>Email weekly summary</strong>
+        <span>Progress, badges, and missed quests.</span>
+      </div>
+      <input type="checkbox" [(ngModel)]="emailSummary" />
+    </div>
+
+    <div class="toggle-row">
+      <div>
+        <strong>Sound effects</strong>
+        <span>Subtle reward and completion cues.</span>
+      </div>
+      <input type="checkbox" [(ngModel)]="soundEffects" />
+    </div>
+  </section>
+</section>

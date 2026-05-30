@@ -1,108 +1,126 @@
-<div class="container mt-4">
-    <!-- User Stats -->
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Total Users</div>
-          <div class="card-body">
-            <h5 class="card-title">{{ totalUsers }}</h5>
-            <p class="card-text">New Signups: {{ newSignups }}</p>
-            <p class="card-text">Active Users: {{ activeUsers }}</p>
-          </div>
-        </div>
+<section class="page dashboard-page">
+  <div class="page-hero">
+    <div class="hero-panel dashboard-hero">
+      <p class="eyebrow">Learner Command Center</p>
+      <h1>Your next win is already queued.</h1>
+      <p class="lede">
+        Track course momentum, skill practice, quiz readiness, and reward progress from one clean workspace.
+      </p>
+      <div class="progress-track">
+        <span class="progress-fill" [style.width.%]="focusCourse.progress"></span>
       </div>
-  
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">User Growth</div>
-          <div class="card-body">
-            <p class="card-text">Growth in the past months:</p>
-            <ul>
-              <li *ngFor="let data of userGrowthData">{{ data }} users</li>
-            </ul>
-          </div>
-        </div>
+      <div class="hero-meta">
+        <span>{{ focusCourse.title }}</span>
+        <strong>{{ focusCourse.progress }}%</strong>
       </div>
     </div>
-  
-    <!-- Course Stats -->
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Total Courses</div>
-          <div class="card-body">
-            <h5 class="card-title">{{ totalCourses }}</h5>
-            <p class="card-text">Active Courses: {{ activeCourses }}</p>
-            <p class="card-text">Inactive Courses: {{ inactiveCourses }}</p>
-          </div>
+
+    <aside class="coach-panel">
+      <span class="status-pill">Coach note</span>
+      <h2>{{ focusCourse.nextMilestone }}</h2>
+      <p>Finish one quiz and one challenge today to unlock the next badge tier.</p>
+      <div class="coach-score">
+        <strong>+270</strong>
+        <span>XP available today</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="grid grid-4">
+    <article class="metric-card" *ngFor="let stat of learnerStats">
+      <span>{{ stat.label }}</span>
+      <strong>{{ stat.value }}</strong>
+      <small>{{ stat.detail }}</small>
+    </article>
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="surface-card panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Weekly Rhythm</p>
+          <h2>XP activity</h2>
+        </div>
+        <span class="tag">1,880 XP</span>
+      </div>
+      <div class="bar-chart" aria-label="Weekly XP chart">
+        <div class="bar-item" *ngFor="let item of weeklyMomentum">
+          <span class="bar" [style.height.%]="(item.xp / getMaxXp()) * 100"></span>
+          <strong>{{ item.day }}</strong>
         </div>
       </div>
-  
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Popular Courses</div>
-          <div class="card-body">
-            <ul>
-              <li *ngFor="let course of popularCourses">{{ course }}</li>
-            </ul>
-          </div>
+    </section>
+
+    <section class="surface-card panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Today</p>
+          <h2>Practice plan</h2>
+        </div>
+        <span class="tag">3 tasks</span>
+      </div>
+      <article class="plan-row" *ngFor="let item of todayPlan">
+        <div>
+          <strong>{{ item.title }}</strong>
+          <span>{{ item.type }} · {{ item.xp }} XP</span>
+        </div>
+        <small>{{ item.status }}</small>
+      </article>
+    </section>
+
+    <section class="surface-card panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Skill Map</p>
+          <h2>Focus areas</h2>
         </div>
       </div>
-    </div>
-  
-    <!-- Challenges & Rewards Stats -->
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Challenges</div>
-          <div class="card-body">
-            <h5 class="card-title">Active Challenges: {{ activeChallenges }}</h5>
-            <p class="card-text">Rewards Given: {{ rewardsGiven }}</p>
-            <p class="card-text">Users Participated: {{ challengeParticipation }}</p>
-          </div>
+      <article class="skill-row" *ngFor="let skill of skillFocus">
+        <div>
+          <strong>{{ skill.name }}</strong>
+          <span>{{ skill.progress }}%</span>
+        </div>
+        <div class="progress-track">
+          <span class="progress-fill" [style.width.%]="skill.progress"></span>
+        </div>
+      </article>
+    </section>
+
+    <section class="surface-card panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Badges</p>
+          <h2>Recent unlocks</h2>
         </div>
       </div>
-    </div>
-  
-    <!-- Revenue Stats (if applicable) -->
-    <div class="row" *ngIf="totalRevenue">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Total Revenue</div>
-          <div class="card-body">
-            <h5 class="card-title">${{ totalRevenue }}</h5>
-          </div>
+      <article class="badge-row" *ngFor="let badge of earnedBadges">
+        <span class="badge-mark">{{ badge.name.charAt(0) }}</span>
+        <div>
+          <strong>{{ badge.name }}</strong>
+          <p>{{ badge.description }}</p>
         </div>
-      </div>
-  
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Recent Transactions</div>
-          <div class="card-body">
-            <ul>
-              <li *ngFor="let transaction of recentTransactions">
-                {{ transaction.user }} purchased {{ transaction.course }} for ${{ transaction.amount }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Admin Activity Logs -->
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card bg-light mb-3">
-          <div class="card-header">Admin Activity Logs</div>
-          <div class="card-body">
-            <ul>
-              <li *ngFor="let activity of adminActivity">
-                {{ activity.action }} on {{ activity.timestamp }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      </article>
+    </section>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Active Courses</p>
+      <h2>Keep going where progress is warm</h2>
     </div>
   </div>
-  
+
+  <div class="course-progress-list">
+    <article class="course-progress" *ngFor="let course of inProgressCourses">
+      <img [src]="course.image" [alt]="course.title" />
+      <div>
+        <span class="tag">{{ course.level }}</span>
+        <h3>{{ course.title }}</h3>
+        <div class="progress-track">
+          <span class="progress-fill" [style.width.%]="course.progress"></span>
+        </div>
+      </div>
+      <strong>{{ course.progress }}%</strong>
+    </article>
+  </div>
+</section>

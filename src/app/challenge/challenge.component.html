@@ -1,65 +1,99 @@
-<div class="challenge-container">
-  <h2>Coding Challenges</h2>
-
-  <!-- Display the list of challenges to choose from -->
-  <div class="challenge-selection">
-    <h3>Daily Challenges</h3>
-    <button *ngFor="let challenge of dailyChallenges" (click)="selectChallenge(challenge)">
-      {{ challenge.title }}
-    </button>
-
-    <h3>Weekly Challenges</h3>
-    <button *ngFor="let challenge of weeklyChallenges" (click)="selectChallenge(challenge)">
-      {{ challenge.title }}
-    </button>
-  </div>
-
-  <!-- Display the selected challenge -->
-  <div *ngIf="selectedChallenge" class="challenge-details">
-    <h3>{{ selectedChallenge.title }}</h3>
-    <p>{{ selectedChallenge.description }}</p>
-
-    <!-- Theoretical Question -->
-    <div class="theoretical-question">
-      <h4>Theoretical Question:</h4>
-      <p>{{ selectedChallenge.theoryQuestion }}</p>
-      <label for="theoryAnswer">Your Answer:</label>
-      <textarea id="theoryAnswer" [(ngModel)]="theoryAnswer" rows="4" cols="50"></textarea>
+<section class="page challenge-page">
+  <div class="challenge-hero">
+    <div>
+      <p class="eyebrow">Challenge Lab</p>
+      <h1>Practice under light pressure, then collect the reward.</h1>
+      <p class="lede">
+        Theory checkpoints, code runs, feedback, and XP are grouped into one focused challenge workspace.
+      </p>
     </div>
-
-    <!-- Coding Question -->
-    <div class="code-editor">
-      <h4>Coding Question:</h4>
-      <label for="userCode">Write your code here:</label>
-      <textarea id="userCode" [(ngModel)]="userCode" rows="10" cols="50"></textarea>
-    </div>
-
-    <!-- Button to submit and run the code -->
-    <button (click)="runCode()">Run</button>
-
-    <!-- Display the output section -->
-    <div *ngIf="evaluationResult || errorMessage || consoleOutput" class="output-section">
-      <h4>Code Output:</h4>
-
-      <!-- Display the console log output -->
-      <div *ngIf="consoleOutput" class="console-output">
-        <h4>Console Log:</h4>
-        <pre>{{ consoleOutput }}</pre>
-      </div>
-
-      <!-- Display the final result -->
-      <div *ngIf="codeOutput !== null" class="output">
-        <h4>Result:</h4>
-        <pre>{{ codeOutput }}</pre>
-      </div>
-
-      <!-- Display the success or error message -->
-      <div *ngIf="evaluationResult" class="success">
-        <p>{{ evaluationResult }}</p>
-      </div>
-      <div *ngIf="errorMessage" class="error">
-        <p>{{ errorMessage }}</p>
-      </div>
+    <div class="challenge-score">
+      <span>Available today</span>
+      <strong>410 XP</strong>
     </div>
   </div>
-</div>
+
+  <div class="challenge-layout">
+    <aside class="challenge-sidebar">
+      <h2>Daily</h2>
+      <button
+        *ngFor="let challenge of dailyChallenges"
+        type="button"
+        class="challenge-tab"
+        [class.active]="selectedChallenge.id === challenge.id"
+        (click)="selectChallenge(challenge)"
+      >
+        <span>{{ challenge.difficulty }}</span>
+        <strong>{{ challenge.title }}</strong>
+        <small>{{ challenge.xp }} XP</small>
+      </button>
+
+      <h2>Weekly</h2>
+      <button
+        *ngFor="let challenge of weeklyChallenges"
+        type="button"
+        class="challenge-tab"
+        [class.active]="selectedChallenge.id === challenge.id"
+        (click)="selectChallenge(challenge)"
+      >
+        <span>{{ challenge.difficulty }}</span>
+        <strong>{{ challenge.title }}</strong>
+        <small>{{ challenge.xp }} XP</small>
+      </button>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-header">
+        <div>
+          <span class="tag">{{ selectedChallenge.cadence }}</span>
+          <h2>{{ selectedChallenge.title }}</h2>
+          <p>{{ selectedChallenge.description }}</p>
+        </div>
+        <span class="status-pill">{{ selectedChallenge.xp }} XP</span>
+      </div>
+
+      <div class="workspace-grid">
+        <section class="editor-panel">
+          <label for="theoryAnswer">Theory checkpoint</label>
+          <p>{{ selectedChallenge.theoryQuestion }}</p>
+          <textarea
+            id="theoryAnswer"
+            class="form-control"
+            rows="4"
+            [(ngModel)]="theoryAnswer"
+            placeholder="Use the key concept in your own words"
+          ></textarea>
+
+          <div class="code-label">
+            <label for="userCode">Solution</label>
+            <button type="button" class="ghost-action" (click)="loadStarterCode()">Reset Starter</button>
+          </div>
+          <textarea id="userCode" class="code-input" rows="13" [(ngModel)]="userCode"></textarea>
+
+          <button type="button" class="primary-action run-action" (click)="runCode()">Run Challenge</button>
+        </section>
+
+        <aside class="output-panel">
+          <p class="eyebrow">Output</p>
+
+          <div class="output-block" *ngIf="consoleOutput">
+            <strong>Console</strong>
+            <pre>{{ consoleOutput }}</pre>
+          </div>
+
+          <div class="output-block" *ngIf="codeOutput !== null">
+            <strong>Result</strong>
+            <pre>{{ formatOutput(codeOutput) }}</pre>
+          </div>
+
+          <div class="feedback success" *ngIf="evaluationResult">{{ evaluationResult }}</div>
+          <div class="feedback error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+          <div class="quiet-output" *ngIf="!evaluationResult && !errorMessage && !consoleOutput && codeOutput === null">
+            Run a solution to see feedback, console logs, and reward progress here.
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</section>

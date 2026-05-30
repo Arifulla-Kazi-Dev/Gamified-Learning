@@ -1,19 +1,97 @@
-<div *ngIf="course" class="course-detail">
-  <h2>{{ course.title }}</h2>
-  <div class="course-image" [ngClass]="'course-image-' + course.id"></div> <!-- Dynamically assigned class for CSS background -->
-  <p><strong>Description:</strong> {{ course.description }}</p>
-  <p><strong>Duration:</strong> {{ course.duration }}</p>
-  <p><strong>Instructor:</strong> {{ course.instructor }}</p>
-  <p><strong>Category:</strong> {{ course.category }}</p>
-  <button (click)="goToCourse(course.url)">Enroll Now</button>
-</div>
+<section class="page course-detail-page" *ngIf="course">
+  <div class="course-hero">
+    <div class="course-copy">
+      <span class="tag">{{ course.level }}</span>
+      <h1>{{ course.title }}</h1>
+      <p class="lede">{{ course.description }}</p>
+      <div class="hero-actions">
+        <button type="button" class="primary-action" (click)="goToLesson(firstLessonId(course))">Continue Path</button>
+        <button type="button" class="ghost-action" (click)="openExternalCourse(course.url)">Open Source Course</button>
+      </div>
+    </div>
 
-<h3>Other Courses</h3>
-<div class="course-list">
-  <div *ngFor="let course of courses" class="course-item">
-    <div class="course-image" [ngClass]="'course-image-' + course.id"></div> <!-- Dynamically assigned class for CSS background -->
-    <h4>{{ course.title }}</h4>
-    <p>{{ course.description }}</p>
-    <button (click)="goToCourse(course.url)">View Course</button>
+    <div class="course-cover">
+      <img [src]="course.image" [alt]="course.title" />
+      <div class="cover-progress">
+        <span>{{ course.progress }}% complete</span>
+        <div class="progress-track">
+          <span class="progress-fill" [style.width.%]="course.progress"></span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="grid grid-4">
+    <article class="metric-card">
+      <span>Duration</span>
+      <strong>{{ course.duration }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>Instructor</span>
+      <strong>{{ course.instructor }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>XP Value</span>
+      <strong>{{ course.xp }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>Rating</span>
+      <strong>{{ course.rating }}</strong>
+    </article>
+  </div>
+
+  <div class="detail-layout">
+    <section class="lesson-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Learning Flow</p>
+          <h2>Lessons, quizzes, and challenge gates</h2>
+        </div>
+      </div>
+
+      <article class="lesson-row" *ngFor="let lesson of course.lessons">
+        <div class="lesson-index" [class.done]="lesson.completed">{{ lesson.id }}</div>
+        <div>
+          <span class="tag">{{ lesson.type }}</span>
+          <h3>{{ lesson.title }}</h3>
+          <p>{{ lesson.summary }}</p>
+          <small>{{ lesson.duration }}</small>
+        </div>
+        <button type="button" class="ghost-action" (click)="goToLesson(lesson.id)">
+          {{ lesson.completed ? 'Review' : 'Start' }}
+        </button>
+      </article>
+    </section>
+
+    <aside class="reward-panel">
+      <p class="eyebrow">Path Reward</p>
+      <h2>Badge tier unlocks at 80%</h2>
+      <p>Complete the next quiz and challenge to move this course into mastery range.</p>
+      <div class="reward-meter">
+        <strong>{{ course.progress }}</strong>
+        <span>/ 80</span>
+      </div>
+      <div class="progress-track">
+        <span class="progress-fill" [style.width.%]="(course.progress / 80) * 100"></span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">More Paths</p>
+      <h2>Courses that pair well</h2>
+    </div>
+  </div>
+
+  <div class="related-grid">
+    <article class="related-card" *ngFor="let related of otherCourses">
+      <img [src]="related.image" [alt]="related.title" />
+      <div>
+        <span class="tag">{{ related.level }}</span>
+        <h3>{{ related.title }}</h3>
+        <button type="button" class="ghost-action" (click)="goToCourseLesson(related.id, firstLessonId(related))">Preview Lesson</button>
+      </div>
+    </article>
+  </div>
+</section>
