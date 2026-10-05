@@ -1,7 +1,7 @@
 .home-hero {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72)),
-    url('/assets/course-bg.jpg') center/cover;
+    url('../Assets/course-bg.jpg') center/cover;
   min-height: 430px;
 }
 

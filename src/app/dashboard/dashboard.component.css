@@ -1,7 +1,7 @@
 .dashboard-hero {
   background:
     linear-gradient(110deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.72)),
-    url('/assets/animated-bg.jpg') center/cover;
+    url('../Assets/animated-bg.jpg') center/cover;
 }
 
 .hero-meta {

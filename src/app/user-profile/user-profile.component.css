@@ -2,7 +2,7 @@
   align-items: center;
   background:
     linear-gradient(110deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.74)),
-    url('/assets/animated-bg.jpg') center/cover;
+    url('../Assets/animated-bg.jpg') center/cover;
   border: 1px solid rgba(27, 34, 58, 0.08);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -125,19 +125,19 @@
 }
 
 .avatar-classic {
-  background-image: url('/assets/classic.jpg');
+  background-image: url('../Assets/classic.jpg');
 }
 
 .avatar-modern {
-  background-image: url('/assets/modern.jpg');
+  background-image: url('../Assets/modern.jpg');
 }
 
 .avatar-fantasy {
-  background-image: url('/assets/fantasy.jpg');
+  background-image: url('../Assets/fantasy.jpg');
 }
 
 .avatar-scifi {
-  background-image: url('/assets/scifi.jpg');
+  background-image: url('../Assets/scifi.jpg');
 }
 
 @media (max-width: 900px) {

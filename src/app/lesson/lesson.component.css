@@ -7,7 +7,7 @@
   align-items: stretch;
   background:
     linear-gradient(110deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.72)),
-    url('/assets/angular.jpg') center/cover;
+    url('../Assets/angular.jpg') center/cover;
   border: 1px solid rgba(27, 34, 58, 0.08);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
